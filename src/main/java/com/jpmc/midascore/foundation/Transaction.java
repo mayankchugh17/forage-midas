@@ -2,47 +2,37 @@ package com.jpmc.midascore.foundation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Transaction {
-    private long senderId;
-    private long recipientId;
+    private long id;
+    private long timestamp;
     private float amount;
 
     public Transaction() {
+        // default constructor
     }
 
-    public Transaction(long senderId, long recipientId, float amount) {
-        this.senderId = senderId;
-        this.recipientId = recipientId;
+    public Transaction(long id, long timestamp, float amount) {
+        this.id = id;
+        this.timestamp = timestamp;
         this.amount = amount;
     }
 
-    public long getSenderId() {
-        return senderId;
-    }
+    // Getters and Setters (required for Kafka JSON deserialization)
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
-    public void setSenderId(long senderId) {
-        this.senderId = senderId;
-    }
+    public long getTimestamp() { return timestamp; }
+    public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
 
-    public long getRecipientId() {
-        return recipientId;
-    }
-
-    public void setRecipientId(long recipientId) {
-        this.recipientId = recipientId;
-    }
-
-    public float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(float amount) {
-        this.amount = amount;
-    }
+    public float getAmount() { return amount; }
+    public void setAmount(float amount) { this.amount = amount; }
 
     @Override
     public String toString() {
-        return "Transaction {senderId=" + senderId + ", recipientId=" + recipientId + ", amount=" + amount + "}";
+        return "Transaction{id=" + id + ", timestamp=" + timestamp + ", amount=" + amount + "}";
     }
 }
+
+
